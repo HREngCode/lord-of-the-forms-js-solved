@@ -14,6 +14,38 @@ export const FunctionalForm = () => {
   const [emailInput, setEmailInput] = useState("");
   const [cityInput, setCityInput] = useState("");
 
+  const [phoneInputState, setPhoneInputState] = useState(["", "", "", ""]);
+  const refs = [useRef(), useRef(), useRef(), useRef()];
+
+  const phoneInputOneRef = refs[0];
+  const phoneInputTwoRef = refs[1];
+  const phoneInputThreeRef = refs[2];
+  const phoneInputFourRef = refs[3];
+
+  const createOnChangeHandler = (index) => (e) => {
+    const lengths = [2, 2, 2, 1];
+    const currentMaxLength = lengths[index];
+    const nextRef = refs[index + 1];
+    const prevRef = refs[index - 1];
+    const value = e.target.value;
+
+    const shouldGoToNextRef =
+      currentMaxLength === value.length && nextRef?.current;
+
+    const shouldGoToPrevRef = value.length === 0 && prevRef?.current;
+
+    const newState = phoneInputState.map((phoneInput, phoneInputIndex) =>
+      index === phoneInputIndex ? e.target.value : phoneInput
+    );
+    if (shouldGoToNextRef) {
+      nextRef.current?.focus();
+    }
+    if (shouldGoToPrevRef) {
+      prevRef.current?.focus();
+    }
+    setPhoneInputState(newState);
+  };
+
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const isFirstNameInputValid = firstNameInput.trim().length > 2;
@@ -21,11 +53,6 @@ export const FunctionalForm = () => {
   const isEmailInputValid =
     emailInput.includes("@") && emailInput.includes(".");
   const isCityInputValid = cityInput.length > 0;
-
-  const cityRef = useRef(null);
-  const firstNameRef = useRef(null);
-  const lastNameRef = useRef(null);
-  const emailRef = useRef(null);
 
   const reset = () => {
     setFirstNameInput(" ");
@@ -59,7 +86,6 @@ export const FunctionalForm = () => {
       <div className="input-wrap">
         <label>{"First Name"}:</label>
         <input
-          ref={firstNameRef}
           placeholder="Bilbo"
           onChange={(e) => {
             e.preventDefault();
@@ -78,7 +104,6 @@ export const FunctionalForm = () => {
       <div className="input-wrap">
         <label>{"Last Name"}:</label>
         <input
-          ref={lastNameRef}
           placeholder="Baggins"
           onChange={(e) => {
             e.preventDefault();
@@ -96,7 +121,6 @@ export const FunctionalForm = () => {
       <div className="input-wrap">
         <label>{"Email"}:</label>
         <input
-          ref={emailRef}
           placeholder="bilbo-baggins@adventurehobbits.net"
           onChange={(e) => {
             e.preventDefault();
@@ -114,7 +138,6 @@ export const FunctionalForm = () => {
       <div className="input-wrap">
         <label>{"City"}:</label>
         <input
-          ref={cityRef}
           placeholder="Hobbiton"
           onChange={(e) => {
             e.preventDefault();
@@ -131,13 +154,41 @@ export const FunctionalForm = () => {
       <div className="input-wrap">
         <label htmlFor="phone">Phone:</label>
         <div id="phone-input-wrap">
-          <input type="text" id="phone-input-1" placeholder="55" />
+          <input
+            ref={phoneInputOneRef}
+            type="text"
+            id="phone-input-1"
+            placeholder="55"
+            value={phoneInputState[0]}
+            onChange={createOnChangeHandler(0)}
+          />
           -
-          <input type="text" id="phone-input-2" placeholder="55" />
+          <input
+            ref={phoneInputTwoRef}
+            type="text"
+            id="phone-input-2"
+            placeholder="55"
+            value={phoneInputState[1]}
+            onChange={createOnChangeHandler(1)}
+          />
           -
-          <input type="text" id="phone-input-3" placeholder="55" />
+          <input
+            ref={phoneInputThreeRef}
+            type="text"
+            id="phone-input-3"
+            placeholder="55"
+            value={phoneInputState[2]}
+            onChange={createOnChangeHandler(2)}
+          />
           -
-          <input type="text" id="phone-input-4" placeholder="5" />
+          <input
+            ref={phoneInputFourRef}
+            type="text"
+            id="phone-input-4"
+            placeholder="5"
+            value={phoneInputState[3]}
+            onChange={createOnChangeHandler(3)}
+          />
         </div>
       </div>
 
