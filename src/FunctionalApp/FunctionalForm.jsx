@@ -53,6 +53,11 @@ export const FunctionalForm = () => {
   const isEmailInputValid =
     emailInput.includes("@") && emailInput.includes(".");
   const isCityInputValid = cityInput.length > 0;
+  const isPhoneInputStateValid =
+    phoneInputState[0].length == 2 &&
+    phoneInputState[1].length == 2 &&
+    phoneInputState[2].length == 2 &&
+    phoneInputState[3].length == 1;
 
   const reset = () => {
     setFirstNameInput(" ");
@@ -185,6 +190,7 @@ export const FunctionalForm = () => {
             ref={phoneInputFourRef}
             type="text"
             id="phone-input-4"
+            maxLength={1}
             placeholder="5"
             value={phoneInputState[3]}
             onChange={createOnChangeHandler(3)}
@@ -192,7 +198,10 @@ export const FunctionalForm = () => {
         </div>
       </div>
 
-      <ErrorMessage message={phoneNumberErrorMessage} show={false} />
+      <ErrorMessage
+        message={phoneNumberErrorMessage}
+        show={!isPhoneInputStateValid && isSubmitted}
+      />
 
       <input type="submit" value="Submit" />
     </form>
