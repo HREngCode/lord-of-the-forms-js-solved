@@ -8,7 +8,7 @@ const emailErrorMessage = "Email is Invalid";
 const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
-export const FunctionalForm = ({ onFormSubmit }) => {
+export const FunctionalForm = ({ onFormSubmit, allCities }) => {
   const [firstNameInput, setFirstNameInput] = useState("");
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
@@ -154,6 +154,7 @@ export const FunctionalForm = ({ onFormSubmit }) => {
       <div className="input-wrap">
         <label>{"City"}:</label>
         <input
+          list="cities"
           placeholder="Hobbiton"
           onChange={(e) => {
             e.preventDefault();
@@ -161,6 +162,11 @@ export const FunctionalForm = ({ onFormSubmit }) => {
           }}
           value={cityInput}
         />
+        <datalist id="cities">
+          {allCities.map((city) => (
+            <option key={city} value={city} />
+          ))}
+        </datalist>
       </div>
       <ErrorMessage
         message={cityErrorMessage}

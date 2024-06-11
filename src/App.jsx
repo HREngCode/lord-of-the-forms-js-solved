@@ -14,7 +14,7 @@ function App() {
         <h4>Always remember.. One does not simply fill out a react form</h4>
         <div className="forms-container">
           <div className="left">
-            <FunctionalApp />
+            <FunctionalApp allCities={allCities} />
           </div>
           <div className="right">
             <ClassApp />

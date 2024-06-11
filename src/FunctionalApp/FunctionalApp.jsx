@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ProfileInformation } from "../ProfileInformation";
 import { FunctionalForm } from "./FunctionalForm";
 
-export const FunctionalApp = () => {
+export const FunctionalApp = ({ allCities }) => {
   const [userData, setUserData] = useState(null);
 
   const handleFormSubmit = (data) => {
@@ -12,7 +12,7 @@ export const FunctionalApp = () => {
     <>
       <h2>Functional</h2>
       <ProfileInformation userData={userData} />
-      <FunctionalForm onFormSubmit={handleFormSubmit} />
+      <FunctionalForm allCities={allCities} onFormSubmit={handleFormSubmit} />
     </>
   );
 };
