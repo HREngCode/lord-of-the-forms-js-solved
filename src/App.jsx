@@ -17,7 +17,7 @@ function App() {
             <FunctionalApp allCities={allCities} />
           </div>
           <div className="right">
-            <ClassApp />
+            <ClassApp allCities={allCities} />
           </div>
         </div>
       </div>
