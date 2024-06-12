@@ -232,6 +232,7 @@ export class ClassForm extends Component {
               ref={this.phoneInputRefs[3]}
               type="text"
               id="phone-input-4"
+              maxLength={1}
               placeholder="5"
               value={phoneInputState[3]}
               onChange={this.createOnChangeHandler(3)}
