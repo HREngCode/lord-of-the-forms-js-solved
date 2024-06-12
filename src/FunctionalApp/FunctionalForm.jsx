@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { ErrorMessage } from "../ErrorMessage";
-import { TextInput } from "../TextInput";
 
 const firstNameErrorMessage = "First name must be at least 2 characters long";
 const lastNameErrorMessage = "Last name must be at least 2 characters long";
@@ -13,8 +12,8 @@ export const FunctionalForm = ({ onFormSubmit, allCities }) => {
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [cityInput, setCityInput] = useState("");
-
   const [phoneInputState, setPhoneInputState] = useState(["", "", "", ""]);
+
   const refs = [useRef(), useRef(), useRef(), useRef()];
 
   const phoneInputOneRef = refs[0];
