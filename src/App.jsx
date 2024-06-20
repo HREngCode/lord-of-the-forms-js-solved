@@ -21,7 +21,7 @@ function App() {
           </div>
         </div>
       </div>
-      <datalist id="cities">
+      <datalist id="allCities">
         {allCities.map((city) => (
           <option key={city}>{city}</option>
         ))}

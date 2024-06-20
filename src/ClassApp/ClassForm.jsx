@@ -1,5 +1,6 @@
 import { Component, createRef } from "react";
 import { ErrorMessage } from "../ErrorMessage";
+import { allCities } from "../utils/all-cities";
 
 const firstNameErrorMessage = "First name must be at least 2 characters long";
 const lastNameErrorMessage = "Last name must be at least 2 characters long";
@@ -182,7 +183,7 @@ export class ClassForm extends Component {
         <div className="input-wrap">
           <label>{"City"}:</label>
           <input
-            list="cities"
+            list="allCities"
             placeholder="Hobbiton"
             onChange={this.handleInputChange("cityInput")}
             value={cityInput}
