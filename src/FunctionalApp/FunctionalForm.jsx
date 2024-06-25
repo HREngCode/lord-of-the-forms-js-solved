@@ -1,6 +1,6 @@
 import { useState } from "react";
 import FunctionalTextInput from "./FunctionalTextInput";
-import { isEmailValid } from "../utils/validations";
+import { isCityValid, isEmailValid } from "../utils/validations";
 import FunctionalPhoneInput from "./FunctionalPhoneInput";
 
 const firstNameErrorMessage = "First name must be at least 2 characters long";
@@ -20,7 +20,7 @@ export const FunctionalForm = ({ onFormSubmit }) => {
   const isFirstNameInputValid = firstNameInput.trim().length > 2;
   const isLastNameInputValid = lastNameInput.trim().length > 2;
   const isEmailInputValid = isEmailValid(emailInput);
-  const isCityInputValid = cityInput.length > 0;
+  const isCityInputValid = isCityValid(cityInput);
 
   const reset = () => {
     setFirstNameInput(" ");
