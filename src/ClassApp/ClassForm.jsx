@@ -22,7 +22,7 @@ export class ClassForm extends Component {
     };
   }
 
-  resetForm = () => {
+  resetStateValuesAndForm = () => {
     this.setState({
       firstNameInput: "",
       lastNameInput: "",
@@ -49,12 +49,13 @@ export class ClassForm extends Component {
     const isEmailInputValid = isEmailValid(emailInput);
     const isCityInputValid = isCityValid(cityInput);
 
-    if (
+    const areAllFieldsValid =
       isFirstNameInputValid &&
       isLastNameInputValid &&
       isEmailInputValid &&
-      isCityInputValid
-    ) {
+      isCityInputValid;
+
+    if (areAllFieldsValid) {
       const formData = {
         firstName: firstNameInput,
         lastName: lastNameInput,
@@ -63,8 +64,8 @@ export class ClassForm extends Component {
         phone: phoneInputState.join(""),
       };
 
-      this.props.onFormSubmit(formData);
-      this.resetForm();
+      this.props.setUserData(formData);
+      this.resetStateValuesAndForm();
       this.setState({ isSubmitted: false });
     }
   };

@@ -9,7 +9,7 @@ const emailErrorMessage = "Email is Invalid";
 const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
-export const FunctionalForm = ({ onFormSubmit }) => {
+export const FunctionalForm = ({ setUserData }) => {
   const [firstNameInput, setFirstNameInput] = useState("");
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
@@ -22,11 +22,11 @@ export const FunctionalForm = ({ onFormSubmit }) => {
   const isEmailInputValid = isEmailValid(emailInput);
   const isCityInputValid = isCityValid(cityInput);
 
-  const reset = () => {
-    setFirstNameInput(" ");
+  const resetStateAndFormValues = () => {
+    setFirstNameInput("");
     setLastNameInput("");
-    setEmailInput(" ");
-    setCityInput(" ");
+    setEmailInput("");
+    setCityInput("");
     setPhoneInputState(["", "", "", ""]);
   };
 
@@ -34,12 +34,13 @@ export const FunctionalForm = ({ onFormSubmit }) => {
     e.preventDefault();
     setIsSubmitted(true);
 
-    if (
+    const areAllFieldsValid =
       isFirstNameInputValid &&
       isLastNameInputValid &&
       isEmailInputValid &&
-      isCityInputValid
-    ) {
+      isCityInputValid;
+
+    if (areAllFieldsValid) {
       const formData = {
         firstName: firstNameInput,
         lastName: lastNameInput,
@@ -48,8 +49,8 @@ export const FunctionalForm = ({ onFormSubmit }) => {
         phone: phoneInputState.join(""),
       };
 
-      onFormSubmit(formData);
-      reset();
+      setUserData(formData);
+      resetStateAndFormValues();
       setIsSubmitted(false);
     }
   };

@@ -2,14 +2,6 @@ import { Component } from "react";
 import { ProfileInformation } from "../ProfileInformation";
 import { ClassForm } from "./ClassForm";
 
-// const defaultUser = {
-//   email: "default@default.com",
-//   firstName: "Default",
-//   lastName: "Default",
-//   phone: "1234567",
-//   city: "Hobbiton",
-// };
-
 export class ClassApp extends Component {
   constructor(props) {
     super(props);
