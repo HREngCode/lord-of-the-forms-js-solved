@@ -15,14 +15,14 @@ export class ClassApp extends Component {
   };
 
   render() {
-    const { allCities } = this.props;
-    const { userData } = this.state;
-
     return (
       <>
         <h2>Class</h2>
-        <ProfileInformation userData={userData} />
-        <ClassForm allCities={allCities} onFormSubmit={this.handleFormSubmit} />
+        <ProfileInformation userData={this.state.userData} />
+        <ClassForm
+          allCities={this.props.allCities}
+          setUserData={this.handleFormSubmit}
+        />
       </>
     );
   }
